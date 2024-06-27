@@ -1,3 +1,7 @@
+using System;
+using System.Net.Http.Headers;
+using System.Threading;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,15 +13,20 @@ public class Character : MonoBehaviour
     private Camera cam;
 
     [SerializeField] private GameObject hand;
+    [SerializeField] private GameObject pickedObject;
 
     [SerializeField] private float velocity = 4f;
     [SerializeField] private float jumpForce = 12f;
+    [SerializeField] private float throwForce = 10f;
     [SerializeField] private float AttackColdown = 0.5f;
+
+    private bool watchingShop;
 
     private float attackTime = 0;
 
     void Awake()
     {
+        
         rgbody = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
@@ -26,12 +35,14 @@ public class Character : MonoBehaviour
 
     void Update()
     {
+        if(watchingShop) return;
         //Coldowns
         attackTime += Time.deltaTime;
 
         Move(input.actions["Move"].ReadValue<Vector2>().x);
         if(input.actions["Jump"].WasPerformedThisFrame()) Jump();
         if(input.actions["Attack"].WasPerformedThisFrame()) Attack();
+        if(input.actions["Interact"].WasPerformedThisFrame()) Interact();
     }
 
     void LateUpdate()
@@ -59,16 +70,67 @@ public class Character : MonoBehaviour
 
     private void Attack()
     {
+        //Si tiene algo en la mano, lo lanza
+        if(pickedObject != null)
+        {
+            Throw();
+            return;
+        }
+
         if(attackTime <= AttackColdown) return;
         
         hand.transform.position = transform.position;
         hand.transform.rotation = Quaternion.Euler(0, 0, GetAngleTowardsMouse());
         hand.SetActive(true);
 
-
         attackTime = 0;
     }
+    private void Interact()
+    {
+        Vector2 mouseWorldPosition = GetMouseWorldPosition();
+
+
+        if(Physics2D.OverlapPoint(mouseWorldPosition) && Vector2.Distance(transform.position, mouseWorldPosition) <= 1.5f) //Si hay algo en donde damos clic...
+        {
+            Collider2D col = Physics2D.OverlapPoint(mouseWorldPosition); //Lo obtenemos
+
+            //Si es pickable, lo tomamos
+            if(col.gameObject.layer == 9) PickUp(col.gameObject);
+        }
+        else //Si no, lo tiramos
+        {
+            Drop(); 
+        }
+    }
     
+    private void PickUp(GameObject obj)
+    {
+        if(pickedObject != null) return;
+
+        obj.transform.parent = transform;
+        obj.transform.position = transform.position + Vector3.up;
+        obj.GetComponent<Rigidbody2D>().simulated = false;
+        pickedObject = obj;
+    }
+
+    private void Throw()
+    {
+        float posX = Mathf.Cos(Mathf.Deg2Rad * GetAngleTowardsMouse());
+        float posY = Mathf.Sin(Mathf.Deg2Rad * GetAngleTowardsMouse());
+
+        pickedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        pickedObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(posX * throwForce, posY * throwForce), ForceMode2D.Impulse);
+        Drop();
+    }
+
+    private void Drop()
+    {
+        if(pickedObject == null) return;
+
+        pickedObject.transform.parent = null;
+        pickedObject.GetComponent<Rigidbody2D>().simulated = true;
+        pickedObject = null;
+    }
     /// <summary>
     /// Detecta si esta tocando solidos
     /// </summary>
@@ -84,7 +146,7 @@ public class Character : MonoBehaviour
     #region Utilidades
     private float GetAngleTowardsMouse()
     {
-        Vector3 mouseWorldPosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 mouseWorldPosition = GetMouseWorldPosition();
 
         Vector3 mouseDirection = mouseWorldPosition - transform.position;
         mouseDirection.z = 0;
@@ -93,5 +155,16 @@ public class Character : MonoBehaviour
 
         return angle;
     }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        return cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    }
+    #endregion
+
+    #region EventsListener
+    public void ShopWasOpen(){watchingShop = true;}
+
+    public void ShopWasClose(){watchingShop = false;}
     #endregion
 }

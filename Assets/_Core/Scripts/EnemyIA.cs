@@ -9,6 +9,9 @@ public class EnemyIA : MonoBehaviour
 
     [SerializeField] private float walkVelocity = 4;
     [SerializeField] private int direction;
+    [SerializeField] private PhysicsMaterial2D baseMaterial;
+    [SerializeField] private PhysicsMaterial2D pickableMaterial;
+    
 
     private float time = 0;
     private float timeToChangeDirection = 0;
@@ -22,26 +25,25 @@ public class EnemyIA : MonoBehaviour
 
     void OnEnable()
     {
-        transform.localEulerAngles = new Vector3(0,0,0);
-        animator.enabled = true;
+        TransformToEnemy();
     }
 
     void Update()
     {
-        if(health.Death) 
+        if(health.Empty) 
         {
-            animator.enabled = false;
-
-            Move(0);
-            Stunned();
+            if(gameObject.layer != 9) TransformToPickable();
             return;
         }
+
         time += Time.deltaTime;
 
         if(time >= timeToChangeDirection) ChangeDirection();
         Move(direction);
 
         animator.SetFloat("Velocity", Mathf.Abs(rgbody.velocity.x));
+        bool flying = false; if(Mathf.Abs(rgbody.velocity.y) > 0.5f) flying = true;
+        animator.SetBool("Flying", flying);
     }
 
     /// <summary>
@@ -66,8 +68,27 @@ public class EnemyIA : MonoBehaviour
         timeToChangeDirection = Random.Range(1f, 2f);
     }
 
-    private void Stunned()
+
+    private void TransformToPickable()
     {
-        transform.localEulerAngles = new Vector3(0,0,180);
+        rgbody.freezeRotation = false;
+        rgbody.gravityScale = 1;
+        rgbody.sharedMaterial = pickableMaterial;
+        transform.eulerAngles = new Vector3(0,0,180);
+        gameObject.layer = 9;
+        animator.enabled = false;
+        Move(0);
+    
+    }
+
+    private void TransformToEnemy()
+    {
+        rgbody.freezeRotation = true;
+        rgbody.gravityScale = 0.2f;
+        rgbody.sharedMaterial = baseMaterial;
+        transform.rotation = new Quaternion(0,0,0,0);
+        gameObject.layer = 7;
+        animator.enabled = true;
+        rgbody.simulated = true;
     }
 }

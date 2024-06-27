@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealthPoints = 3; 
     public int MaxHealthPoints => maxHealthPoints;
 
-    bool death; public bool Death => death;
+    bool empty; public bool Empty => empty;
 
     void Awake()
     {
@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
     }
     void OnEnable()
     {
-        death = false;
+        empty = false;
         healthPoints = maxHealthPoints;
         StartCoroutine(SetColor(Color.white, 0));
     }
@@ -29,12 +29,12 @@ public class Health : MonoBehaviour
     /// <param name="cantity">cantidad de daño a aplicar</param>
     public void ApplyDamage(int cantity)
     {
-        if(death) return;
+        if(empty) return;
 
         healthPoints -= cantity;    
         if(healthPoints <= 0)
         {
-            death = true;
+            empty = true;
         }
         else DamagedAnimation();
     }
