@@ -6,7 +6,7 @@ public class ShopDataBase : MonoBehaviour
 
     [SerializeField] private int shipLvl = 0;
     [SerializeField] private ShopItemPack[] itemPack;  
-    
+    [SerializeField] private Character player;
     private bool itemsLoaded;
 
     private void Awake()
@@ -40,6 +40,8 @@ public class ShopDataBase : MonoBehaviour
     public void OpenShop()
     {
         if(itemsLoaded == false) LoadUpgrades();
+
+        player.ShopWasOpen();
         UI.OpenShop(itemPack[shipLvl]);
     }
 
@@ -48,13 +50,14 @@ public class ShopDataBase : MonoBehaviour
     /// </summary>
     public void CloseShop()
     {
+        player.ShopWasClose();
         UI.CloseShop();
     }
     
     public void Buy(int id)
     {
         try{itemPack[shipLvl].Item[id].Activate();} catch {Debug.Log("Esta vacio");}
-        UI.CloseShop();
+        CloseShop();
     }
     
 }

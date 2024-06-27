@@ -10,15 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 7708561153228826543}
   - component: {fileID: 7708561153228826542}
+  - component: {fileID: 8651760939579236648}
   - component: {fileID: 7708561153228826530}
+  - component: {fileID: 2942602182838899762}
   - component: {fileID: 7708561153228826540}
   - component: {fileID: 7708561153228826531}
   - component: {fileID: -7596155687918055993}
-  - component: {fileID: 2942602182838899762}
-  - component: {fileID: 8651760939579236648}
+  - component: {fileID: -6807569965161813844}
   m_Layer: 7
   m_Name: BrownChicken
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,6 +91,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8651760939579236648
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708561153228826536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f748cec2beefe0944b26305d0dad9889, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &7708561153228826530
 Rigidbody2D:
   serializedVersion: 4
@@ -111,6 +132,39 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &2942602182838899762
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708561153228826536}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.3, y: -0.1}
+      - {x: -0.3, y: -0.3}
+      - {x: -0.1, y: -0.5}
+      - {x: 0.1, y: -0.5}
+      - {x: 0.3, y: -0.3}
+      - {x: 0.3, y: -0.1}
+      - {x: 0.1, y: 0.1}
+      - {x: -0.1, y: 0.1}
 --- !u!114 &7708561153228826540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,56 +207,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19362a69b9f5f254bb7b782a1f2ad1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!60 &2942602182838899762
-PolygonCollider2D:
+--- !u!114 &-6807569965161813844
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7708561153228826536}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.3, y: -0.1}
-      - {x: -0.3, y: -0.3}
-      - {x: -0.1, y: -0.5}
-      - {x: 0.1, y: -0.5}
-      - {x: 0.3, y: -0.3}
-      - {x: 0.3, y: -0.1}
-      - {x: 0.1, y: 0.1}
-      - {x: -0.1, y: 0.1}
---- !u!95 &8651760939579236648
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7708561153228826536}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f748cec2beefe0944b26305d0dad9889, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e746075616fb0346871ae8e138d8dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 1
+  isOviparous: 1
+  egg: {fileID: 6907066035655796545, guid: 5229b7e7eb157e049a55fa6833b7b721, type: 3}
+  timePerCicle: 10
+  eggsPerCicle: 1

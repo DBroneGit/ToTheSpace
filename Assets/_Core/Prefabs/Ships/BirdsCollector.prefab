@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6036241942486257620}
   - component: {fileID: 6036241942486257622}
   - component: {fileID: 6036241942486257623}
-  m_Layer: 10
+  - component: {fileID: 8048326974393123391}
+  m_Layer: 9
   m_Name: BirdsCollector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,3 +161,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   birdsList: []
   callOvni: {fileID: 11400000, guid: 12acb0dd4acc8fa4fa06ef0bd09b67d2, type: 2}
+--- !u!114 &8048326974393123391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036241942486257611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e83dff47e901e45a396041e019f330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requireEnemy: 0
+  OpenShop: {fileID: 11400000, guid: 0835637b946de4145a6b5d7d7611faae, type: 2}

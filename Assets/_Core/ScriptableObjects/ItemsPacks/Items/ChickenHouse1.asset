@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9c0a65673bbcef40b4f1ef8f0c78bb6, type: 3}
-  m_Name: ChickenCoop1
+  m_Name: ChickenHouse1
   m_EditorClassIdentifier: 
-  itemName: Chicken Coop L1
-  itemIcon: {fileID: -1081555511, guid: 4a7e3a75cb2267e42ad24698d039d518, type: 3}
+  itemName: Chicken House L1
+  itemIcon: {fileID: 1039057138, guid: 059ded95441bc5c4aa231b017e34134e, type: 3}
   price: 3
   itemsRequired: []
   sold: 0

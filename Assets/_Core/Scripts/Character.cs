@@ -1,7 +1,3 @@
-using System;
-using System.Net.Http.Headers;
-using System.Threading;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +9,7 @@ public class Character : MonoBehaviour
     private Camera cam;
 
     [SerializeField] private GameObject hand;
-    [SerializeField] private GameObject pickedObject;
+    [SerializeField] private GameObject pickedObject; public GameObject PickedObject { get => pickedObject; set => pickedObject = value; }
 
     [SerializeField] private float velocity = 4f;
     [SerializeField] private float jumpForce = 12f;
@@ -89,13 +85,22 @@ public class Character : MonoBehaviour
     {
         Vector2 mouseWorldPosition = GetMouseWorldPosition();
 
-
         if(Physics2D.OverlapPoint(mouseWorldPosition) && Vector2.Distance(transform.position, mouseWorldPosition) <= 1.5f) //Si hay algo en donde damos clic...
         {
             Collider2D col = Physics2D.OverlapPoint(mouseWorldPosition); //Lo obtenemos
 
-            //Si es pickable, lo tomamos
-            if(col.gameObject.layer == 9) PickUp(col.gameObject);
+            //Si es Interactable...
+            if(col.gameObject.layer == 9)
+            {
+                if(col.tag == "Enemy") PickUp(col.gameObject);
+                if(col.tag == "Object") InteractWithObject(col.gameObject);
+                
+            }
+            //Si es el collector, abrimos la tienda
+            if(col.gameObject.layer == 11)
+            {
+                InteractWithObject(col.gameObject);
+            }
         }
         else //Si no, lo tiramos
         {
@@ -103,7 +108,7 @@ public class Character : MonoBehaviour
         }
     }
     
-    private void PickUp(GameObject obj)
+    public void PickUp(GameObject obj)
     {
         if(pickedObject != null) return;
 
@@ -113,6 +118,10 @@ public class Character : MonoBehaviour
         pickedObject = obj;
     }
 
+    private void InteractWithObject(GameObject interactable)
+    {
+        interactable.GetComponent<InteractableObject>().Interact(this);
+    }
     private void Throw()
     {
         float posX = Mathf.Cos(Mathf.Deg2Rad * GetAngleTowardsMouse());
@@ -123,12 +132,13 @@ public class Character : MonoBehaviour
         Drop();
     }
 
-    private void Drop()
+    public void Drop()
     {
         if(pickedObject == null) return;
 
         pickedObject.transform.parent = null;
         pickedObject.GetComponent<Rigidbody2D>().simulated = true;
+        pickedObject.GetComponent<Rigidbody2D>().gravityScale = 1;
         pickedObject = null;
     }
     /// <summary>

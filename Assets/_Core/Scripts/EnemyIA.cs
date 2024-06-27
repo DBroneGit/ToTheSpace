@@ -28,6 +28,11 @@ public class EnemyIA : MonoBehaviour
         TransformToEnemy();
     }
 
+    void OnDisable()
+    {
+        transform.rotation = new Quaternion(0,0,0,0);
+    }
+
     void Update()
     {
         if(health.Empty) 
