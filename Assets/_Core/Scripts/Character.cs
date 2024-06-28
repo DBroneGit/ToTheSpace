@@ -61,7 +61,11 @@ public class Character : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        if(IsGrounded()) rgbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        if(IsGrounded())
+        {
+            rgbody.velocity = Vector2.zero;
+            rgbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        }
     }
 
     private void Attack()
@@ -96,10 +100,9 @@ public class Character : MonoBehaviour
                 if(col.tag == "Object") InteractWithObject(col.gameObject);
                 
             }
-            //Si es el collector, abrimos la tienda
-            if(col.gameObject.layer == 11)
+            else //Si no, lo tiramos
             {
-                InteractWithObject(col.gameObject);
+                Drop(); 
             }
         }
         else //Si no, lo tiramos

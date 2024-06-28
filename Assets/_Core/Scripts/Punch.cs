@@ -45,8 +45,11 @@ public class Punch : MonoBehaviour
     private void Attack()
     {
         Collider2D obj = Physics2D.OverlapCircle(transform.position, 0.35f, 1<<7);
-        if(obj != null) if(obj.gameObject.layer == 7) obj.gameObject.GetComponent<Health>().ApplyDamage(damage);
-        
+        if(obj != null) if(obj.gameObject.layer == 7)
+        {
+            obj.gameObject.GetComponent<Health>().ApplyDamage(damage);
+            obj.gameObject.GetComponent<EnemyIA>().ShotDown = true;
+        }
         gameObject.SetActive(false);
     }
 

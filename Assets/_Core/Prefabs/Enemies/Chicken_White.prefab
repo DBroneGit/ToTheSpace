@@ -10,15 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 7708561153228826543}
   - component: {fileID: 7708561153228826542}
-  - component: {fileID: 8651760939579236648}
+  - component: {fileID: 2222058332684272886}
   - component: {fileID: 7708561153228826530}
-  - component: {fileID: 2942602182838899762}
-  - component: {fileID: 7708561153228826540}
+  - component: {fileID: -8116711869032727087}
   - component: {fileID: 7708561153228826531}
   - component: {fileID: -7596155687918055993}
-  - component: {fileID: -6807569965161813844}
+  - component: {fileID: 223717226458184027}
+  - component: {fileID: 8433832452174574142}
   m_Layer: 7
-  m_Name: BrownChicken
+  m_Name: Chicken_White
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 346164202, guid: 4a7e3a75cb2267e42ad24698d039d518, type: 3}
+  m_Sprite: {fileID: -1081555511, guid: 4a7e3a75cb2267e42ad24698d039d518, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,7 +91,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8651760939579236648
+--- !u!95 &2222058332684272886
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 7708561153228826536}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f748cec2beefe0944b26305d0dad9889, type: 2}
+  m_Controller: {fileID: 22100000, guid: f0f1113e2bc50244fb3915e52aeeeea6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -132,7 +132,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &2942602182838899762
+--- !u!60 &-8116711869032727087
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,22 +165,6 @@ PolygonCollider2D:
       - {x: 0.3, y: -0.1}
       - {x: 0.1, y: 0.1}
       - {x: -0.1, y: 0.1}
---- !u!114 &7708561153228826540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7708561153228826536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41e16e6c7e616e42831c395264d7c42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkVelocity: 2
-  direction: 0
-  baseMaterial: {fileID: 6200000, guid: 6da589e15019785469ef0b772bd34488, type: 2}
-  pickableMaterial: {fileID: 6200000, guid: 51770d8e4452d744980fb9185446e813, type: 2}
 --- !u!114 &7708561153228826531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c88ff91fc7614fa40bd19698cc53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 3
-  maxHealthPoints: 3
+  healthPoints: 2
+  maxHealthPoints: 2
 --- !u!114 &-7596155687918055993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19362a69b9f5f254bb7b782a1f2ad1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6807569965161813844
+--- !u!114 &223717226458184027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,3 +208,19 @@ MonoBehaviour:
   egg: {fileID: 6907066035655796545, guid: 5229b7e7eb157e049a55fa6833b7b721, type: 3}
   timePerCicle: 10
   eggsPerCicle: 1
+--- !u!114 &8433832452174574142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708561153228826536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c324f1c0fd36ff4594a730187853a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkVelocity: 3
+  direction: 0
+  baseMaterial: {fileID: 6200000, guid: 6da589e15019785469ef0b772bd34488, type: 2}
+  pickableMaterial: {fileID: 6200000, guid: 51770d8e4452d744980fb9185446e813, type: 2}

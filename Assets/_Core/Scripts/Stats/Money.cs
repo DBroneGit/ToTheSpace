@@ -1,7 +1,5 @@
-using UnityEngine;
-
 public static class Money
 {
-    public static int Cantity = 10;
+    public static int Cantity = 0;
 }
         

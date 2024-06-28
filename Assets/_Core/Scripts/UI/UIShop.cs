@@ -1,8 +1,5 @@
-using System.Runtime.InteropServices;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
@@ -13,7 +10,6 @@ public class UIShop : MonoBehaviour
     [SerializeField] private GameObject buttonContainer;
     [SerializeField] private GameObject[] buttonlist;
     [SerializeField] private GameObject defaultButton;
-    [SerializeField] private TMP_Text moneyCount;
     [SerializeField] private Sprite empty;
     
 
@@ -32,7 +28,6 @@ public class UIShop : MonoBehaviour
     {
         PNL_ClicProtector.SetActive(false);
         PNL_Shop.SetActive(false);
-        moneyCount.text = Money.Cantity + "";
     }
 
     public void AddItem(ShopItem item, int id)

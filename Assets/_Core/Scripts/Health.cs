@@ -36,7 +36,10 @@ public class Health : MonoBehaviour
         {
             empty = true;
         }
-        else DamagedAnimation();
+        else
+        {
+            DamagedAnimation();
+        }
     }
 
     #region Animacion

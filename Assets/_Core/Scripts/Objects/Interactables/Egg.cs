@@ -11,7 +11,6 @@ public class Egg : InteractableObject
     }
     public override void Interact(Character character)
     {
-        Debug.Log("interact");
         character.PickUp(gameObject);
         gameObject.layer = 8;
     }
@@ -21,6 +20,7 @@ public class Egg : InteractableObject
         if(other.gameObject.layer == 7)
         {
             other.gameObject.GetComponent<Health>().ApplyDamage(damage);
+            other.gameObject.GetComponent<EnemyIA>().ShotDown = true;
         }
 
         PoolsManager.Instance.SearchPool(gameObject).Return(gameObject);   

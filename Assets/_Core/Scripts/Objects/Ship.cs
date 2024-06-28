@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    [SerializeField] private GeneratorManager generatorManager;
     public static Ship Instance;
 
     private Rigidbody2D rgbody;
-    private int altitude = 0; public int Altitude { get => Altitude = altitude; set => altitude = value; }
+    private static int altitude = 0; public static int Altitude { get => Altitude = altitude; set => altitude = value; }
     private int cantityOfFlyingObjects; public int CantityOfFlyingObject { get => cantityOfFlyingObjects; set => cantityOfFlyingObjects = value; }
     
     private Vector2 startPosition;
@@ -37,6 +38,8 @@ public class Ship : MonoBehaviour
         startPosition = transform.position;
         objetivePosition = new Vector2(0, altitude);
         time = 0;
+
+        generatorManager.UpdateActivatedsGenerators();
     }
 
     public void AddRemoveFlyingObject(int cantity)

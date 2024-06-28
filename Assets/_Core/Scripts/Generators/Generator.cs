@@ -10,8 +10,8 @@ public class Generator : MonoBehaviour
 
     [Header("Tiempos de Generación")]
     [SerializeField] private int cantityOfGeneratesOnStart = 1;
-    [SerializeField] private float minimunTimeToGenerate = 10;
-    [SerializeField] private float maximunTimeToGenerate = 20;
+    [SerializeField] private float minimunTimeToGenerate = 3;
+    [SerializeField] private float maximunTimeToGenerate = 7;
 
     [Header("Limites de generación")]
     [SerializeField] private float lefterGeneratorPoint = -10;
