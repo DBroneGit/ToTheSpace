@@ -6,6 +6,6 @@ public class CameraChase : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(0, objectToChase.transform.position.y + 3.5f, -10);
+        transform.position = new Vector3(0, objectToChase.transform.position.y + 4.5f, -10);
     }
 }

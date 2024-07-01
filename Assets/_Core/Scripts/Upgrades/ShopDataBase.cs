@@ -4,7 +4,6 @@ public class ShopDataBase : MonoBehaviour
 {
     private UIShop UI;
 
-    [SerializeField] private int shipLvl = 0;
     [SerializeField] private ShopItemPack[] itemPack;  
     [SerializeField] private Character player;
     private bool itemsLoaded;
@@ -27,11 +26,13 @@ public class ShopDataBase : MonoBehaviour
     /// </summary>
     private void LoadUpgrades()
     {
-        for(int i = 0; i < itemPack[shipLvl].Item.Length; i++)
+        for(int i = 0; i < itemPack.Length; i++)
         {
-            if(itemPack[shipLvl].Item[i] != null) UI.AddItem(itemPack[shipLvl].Item[i], i);
+            for(int j = 0; j < itemPack[i].Item.Length; j++)
+            {
+                if(itemPack[i].Item[j] != null) UI.AddItem(itemPack[i].Item[j], (i * 4) + j);
+            }
         }
-        itemsLoaded = true;
     }
     
     /// <summary>
@@ -39,10 +40,10 @@ public class ShopDataBase : MonoBehaviour
     /// </summary>
     public void OpenShop()
     {
-        if(itemsLoaded == false) LoadUpgrades();
+        LoadUpgrades();
 
         player.ShopWasOpen();
-        UI.OpenShop(itemPack[shipLvl]);
+        UI.OpenShop(itemPack);
     }
 
     /// <summary>
@@ -56,7 +57,8 @@ public class ShopDataBase : MonoBehaviour
     
     public void Buy(int id)
     {
-        try{itemPack[shipLvl].Item[id].Activate();} catch {Debug.Log("Esta vacio");}
+        int level = id / 4;
+        try{itemPack[level].Item[id % 4].Activate();} catch {Debug.Log("Esta vacio");}
         CloseShop();
     }
     

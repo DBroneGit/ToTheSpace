@@ -22,7 +22,9 @@ public class Pigeon : EnemyIA
         
         if(transform.position.x < 0) flyDirection = 1;
         else flyDirection = -1;
+        
         canFly = true;
+        rgbody.gravityScale = 0;
     }
 
     protected override void OnCollisionEnter2D(Collision2D other)
@@ -32,8 +34,10 @@ public class Pigeon : EnemyIA
         shotDown = true;
     }
     
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if(health.Empty) //No tiene vida
         {
             if(gameObject.layer != 9) TransformToPickable();
@@ -52,7 +56,7 @@ public class Pigeon : EnemyIA
                 rgbody.AddForce(new Vector2(flyVelocity * flyDirection, flyVelocity), ForceMode2D.Impulse);
             }
 
-            if(IsGrounded())
+            if(IsGrounded)
             {
                 moveTime += Time.deltaTime;
 
@@ -63,7 +67,7 @@ public class Pigeon : EnemyIA
 
         if(shotDown == false)
         {
-            if(IsGrounded())
+            if(IsGrounded)
             {
                
             }
@@ -75,7 +79,7 @@ public class Pigeon : EnemyIA
         }
        
         animator.SetFloat("Velocity", Mathf.Abs(rgbody.velocity.x));
-        animator.SetBool("Flying", IsGrounded() == false);
+        animator.SetBool("Flying", IsGrounded == false);
     }
 
     /// <summary>

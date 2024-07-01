@@ -25,8 +25,8 @@ public class Ovni : MonoBehaviour
         time = 0;
         comeOutTime = 20;
         finishAsk = false;
-        transform.position = collector.transform.position + (Vector3.up * 7) + (Vector3.left * 15);
-        SetPosition(collector.transform.position + (Vector3.up * 7));
+        transform.position = collector.transform.position + (Vector3.up * 5) + (Vector3.left * 15);
+        SetPosition(collector.transform.position + (Vector3.up * 5));
     }
 
     private void Update()
@@ -44,7 +44,7 @@ public class Ovni : MonoBehaviour
         if(time >= 3 && time <= 4)
         {
             ray.SetActive(true);
-            ray.transform.localScale = new Vector3(Mathf.Lerp(0, 1, time - 3),7 ,1 );
+            ray.transform.localScale = new Vector3(Mathf.Lerp(0, 1, time - 3),6 ,1 );
 
         }
         
@@ -56,14 +56,14 @@ public class Ovni : MonoBehaviour
             if(thereAreSomething == false)
             {
                 comeOutTime = time + 1;
-                SetPosition(collector.transform.position + (Vector3.up * 7) + (Vector3.right * 15));
+                SetPosition(collector.transform.position + (Vector3.up * 6) + (Vector3.right * 15));
                 finishAsk = true;
             } 
         }
         //Cierra el laser
         if(time >= comeOutTime && time <= comeOutTime + 1)
         {
-            ray.transform.localScale = new Vector3(Mathf.Lerp(1, 0, time - comeOutTime),7 ,1 );
+            ray.transform.localScale = new Vector3(Mathf.Lerp(1, 0, time - comeOutTime),6 ,1 );
         }
 
         //Se va

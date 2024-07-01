@@ -1,14 +1,15 @@
 
-using UnityEditor.Experimental.GraphView;
+using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [CreateAssetMenu(menuName = "Upgrades/Item")]
+[Serializable]
 public class ShopItem : ScriptableObject
 {
     [SerializeField] protected string itemName; public string ItemName => itemName;
     [SerializeField] protected Sprite itemIcon; public Sprite ItemIcon => itemIcon;
     [SerializeField] protected int price; public int Price => price;
+    [SerializeField] private int altitudeRequired = 0; public int AltitudeRequired => altitudeRequired;
     [SerializeField] private ShopItem[] itemsRequired; public ShopItem[] ItemsRequired => itemsRequired;
     [SerializeField] protected bool sold; public bool Sold => sold;
 

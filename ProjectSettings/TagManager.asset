@@ -17,9 +17,9 @@ TagManager:
   - Enemies
   - Attack
   - Interactable
-  - ObjectsToFly
-  - Collector
   - Background
+  - Collector
+  - 
   - 
   - 
   - 
@@ -40,11 +40,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky Background
+    uniqueID: 1057473627
+    locked: 0
   - name: Background
     uniqueID: 4089953911
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 2600942657
     locked: 0
   - name: UI
     uniqueID: 4200150719

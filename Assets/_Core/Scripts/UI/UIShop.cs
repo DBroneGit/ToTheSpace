@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,14 +14,17 @@ public class UIShop : MonoBehaviour
     [SerializeField] private Sprite empty;
     
 
-    public void OpenShop(ShopItemPack itemPack)
+    public void OpenShop(ShopItemPack[] itemPack)
     {
         PNL_ClicProtector.SetActive(true);
         PNL_Shop.SetActive(true);
 
-        for(int i = 0; i < itemPack.Item.Length; i++)
+        for(int i = 0; i < itemPack.Length; i++)
         {
-            CanBuy(itemPack.Item[i], buttonlist[i].GetComponent<Button>());
+            for(int j = 0; j < itemPack[i].Item.Length; j++)
+            {
+                CanBuy(itemPack[i].Item[j], buttonlist[(i * 4) + j].GetComponent<Button>());
+            }
         }
     }
 
@@ -44,11 +48,16 @@ public class UIShop : MonoBehaviour
         
         bool canBuy = true;
         //Si algunos de sus requerimentos no esta cubierto, no se puede comprar
+       
         for(int i = 0; i < item.ItemsRequired.Length; i++)
         {
-            if(item.ItemsRequired[i].Sold == false) canBuy = false;
+            if(item.ItemsRequired[i].Sold == false)
+            {
+                canBuy = false;
+                button.GetComponentInChildren<TMP_Text>().text = "NEED " + item.ItemsRequired[i].ItemName;
+            }
         }
-      
+        if(item.AltitudeRequired > Ship.Instance.transform.position.y) {canBuy = false; button.GetComponentInChildren<TMP_Text>().text = "NEED " + item.AltitudeRequired + " Mts";}
         //Si ya se vendio, no se puede comprar
         if(item.Sold == true){ canBuy = false; button.GetComponentInChildren<TMP_Text>().text = "SOLD";} 
         //Si no tienes dinero suficiente, no se puede comprar

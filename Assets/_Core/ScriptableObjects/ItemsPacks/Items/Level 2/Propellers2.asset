@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c0a65673bbcef40b4f1ef8f0c78bb6, type: 3}
+  m_Name: Propellers2
+  m_EditorClassIdentifier: 
+  itemName: Propeller L2
+  itemIcon: {fileID: -292368476, guid: a71c82736fa6bb846869d7d83c32ee88, type: 3}
+  price: 5
+  altitudeRequired: 10
+  itemsRequired:
+  - {fileID: 11400000, guid: fa934d7351ca2c146b3708d35f730e52, type: 2}
+  sold: 0
+  upgradeEvent: {fileID: 11400000, guid: 171593ff2a2b71a469ea4d8f9e6ed245, type: 2}

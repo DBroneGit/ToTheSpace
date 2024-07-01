@@ -1,4 +1,5 @@
-using System;
+    using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
@@ -8,7 +9,7 @@ public class Ship : MonoBehaviour
 
     private Rigidbody2D rgbody;
     private static int altitude = 0; public static int Altitude { get => Altitude = altitude; set => altitude = value; }
-    private int cantityOfFlyingObjects; public int CantityOfFlyingObject { get => cantityOfFlyingObjects; set => cantityOfFlyingObjects = value; }
+    private int cantityOfFlyingObjects = 0; public int CantityOfFlyingObject { get => cantityOfFlyingObjects; set => cantityOfFlyingObjects = value; }
     
     private Vector2 startPosition;
     private Vector2 objetivePosition;

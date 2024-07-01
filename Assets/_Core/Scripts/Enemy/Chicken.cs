@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Chicken : EnemyIA
@@ -24,8 +22,10 @@ public class Chicken : EnemyIA
         base.OnCollisionEnter2D(other);
     }
     
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         if(health.Empty) 
         {
             if(gameObject.layer != 9) TransformToPickable();
@@ -38,6 +38,6 @@ public class Chicken : EnemyIA
         Move(direction);
 
         animator.SetFloat("Velocity", Mathf.Abs(rgbody.velocity.x));
-        animator.SetBool("Flying", IsGrounded() == false);
+        animator.SetBool("Flying", IsGrounded == false);
     }
 }

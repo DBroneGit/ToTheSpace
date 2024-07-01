@@ -17,11 +17,15 @@ public abstract class EnemyIA : MonoBehaviour
     protected float timeToChangeDirection = 0;
     protected float shotDownTime = 0;
     protected bool shotDown; public bool ShotDown { get => shotDown; set => shotDown = value; } 
+    protected bool isGrounded; public bool IsGrounded { get => isGrounded; set => isGrounded = value; } 
+
+    private Vector2 pointA;
+    private Vector2 pointB;
 
     protected virtual void Awake()
     {
         rgbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
     }
 
@@ -33,6 +37,11 @@ public abstract class EnemyIA : MonoBehaviour
     protected virtual void OnDisable()
     {
         transform.rotation = new Quaternion(0,0,0,0);
+    }
+
+    protected virtual void Update()
+    {
+        CheckGround();
     }
     
     protected virtual void OnCollisionEnter2D(Collision2D other)
@@ -89,14 +98,21 @@ public abstract class EnemyIA : MonoBehaviour
         gameObject.layer = 7;
         animator.enabled = true;
         rgbody.simulated = true;
+        shotDown = false;
     }
     
-    protected bool IsGrounded()
+    protected void CheckGround()
     {
-        Vector2 pointA = new Vector2(transform.position.x - 0.24f, transform.position.y - 0.51f);
-        Vector2 pointB = new Vector2(transform.position.x + 0.24f, transform.position.y - 0.49f);
+        pointA = new Vector2(transform.position.x - 0.24f, transform.position.y - 0.55f);
+        pointB = new Vector2(transform.position.x + 0.24f, transform.position.y - 0.45f);
 
-        return Physics2D.OverlapArea(pointA, pointB, 3);
+        isGrounded = Physics2D.OverlapArea(pointA, pointB, 1<<3);
+    }
+
+    protected void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(pointA, pointB);
+        
     }
 
 }

@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
     void OnEnable()
     {

@@ -4,6 +4,7 @@ public class GeneratorManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] listOfGenerators;
     [SerializeField] private int[] altitudeRequerided;
+    [SerializeField] private int[] altitudeMax;
     void Awake()
     {
         UpdateActivatedsGenerators();
@@ -12,7 +13,8 @@ public class GeneratorManager : MonoBehaviour
     {
         for(int i = 0; i < listOfGenerators.Length; i++)
         {
-            if(Ship.Altitude >= altitudeRequerided[i]){listOfGenerators[i].SetActive(true);}
+            if(Ship.Altitude >= altitudeRequerided[i] && Ship.Altitude <= altitudeMax[i])
+            {listOfGenerators[i].SetActive(true);}
             else{listOfGenerators[i].SetActive(false);}
         }
     }

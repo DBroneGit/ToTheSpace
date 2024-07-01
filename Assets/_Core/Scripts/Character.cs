@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
 
     [SerializeField] private float velocity = 4f;
     [SerializeField] private float jumpForce = 12f;
-    [SerializeField] private float throwForce = 10f;
+    [SerializeField] private float throwForce = 10f; public float ThrowForce { get => throwForce; set => throwForce = value; }  
     [SerializeField] private float AttackColdown = 0.5f;
 
     private bool watchingShop;
@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
         
         rgbody = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
@@ -97,7 +97,7 @@ public class Character : MonoBehaviour
             if(col.gameObject.layer == 9)
             {
                 if(col.tag == "Enemy") PickUp(col.gameObject);
-                if(col.tag == "Object") InteractWithObject(col.gameObject);
+                else if(col.tag == "Object"){ InteractWithObject(col.gameObject);}
                 
             }
             else //Si no, lo tiramos
@@ -176,7 +176,7 @@ public class Character : MonoBehaviour
     #endregion
 
     #region EventsListener
-    public void ShopWasOpen(){watchingShop = true;}
+    public void ShopWasOpen(){watchingShop = true; rgbody.velocity = Vector2.zero;}
 
     public void ShopWasClose(){watchingShop = false;}
     #endregion

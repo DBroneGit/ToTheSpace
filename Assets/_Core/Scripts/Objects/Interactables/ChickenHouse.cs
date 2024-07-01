@@ -63,7 +63,6 @@ public class ChickenHouse : InteractableObject
                 enemy.GetComponent<Rigidbody2D>().simulated = false;
             }
         }
-
     }
 
     private void PutBirdOnTheHouse(Enemy enemy)

@@ -8,8 +8,11 @@ public class OvniCollector : MonoBehaviour
     {
         if(other.gameObject.layer == 7 || other.gameObject.layer == 9)
         {  
-            Money.Cantity += other.GetComponent<Enemy>().Price;
-            PoolsManager.Instance.SearchPool(other.gameObject).Return(other.gameObject);
+            if(other.gameObject.tag == "Enemy")
+            {
+                Money.Cantity += other.GetComponent<Enemy>().Price;
+                PoolsManager.Instance.SearchPool(other.gameObject).Return(other.gameObject);
+            }
         }
     }
 }
