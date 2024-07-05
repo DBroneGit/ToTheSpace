@@ -6,11 +6,16 @@ public class ShopDataBase : MonoBehaviour
 
     [SerializeField] private ShopItemPack[] itemPack;  
     [SerializeField] private Character player;
-    private bool itemsLoaded;
+    
+    private AudioSource SFX;
+    [Header("Sound")]
+    [SerializeField] private AudioClip openShop;
+    [SerializeField] private AudioClip buy;
 
     private void Awake()
     {
         UI = GetComponent<UIShop>();
+        SFX = GetComponent<AudioSource>();
 
         //Desactivamos todas las mejoras
         for(int i = 0; i < itemPack.Length; i++)
@@ -44,6 +49,10 @@ public class ShopDataBase : MonoBehaviour
 
         player.ShopWasOpen();
         UI.OpenShop(itemPack);
+
+        //SFX
+        SFX.clip = openShop;
+        SFX.Play();
     }
 
     /// <summary>
@@ -53,6 +62,7 @@ public class ShopDataBase : MonoBehaviour
     {
         player.ShopWasClose();
         UI.CloseShop();
+
     }
     
     public void Buy(int id)
@@ -60,6 +70,10 @@ public class ShopDataBase : MonoBehaviour
         int level = id / 4;
         try{itemPack[level].Item[id % 4].Activate();} catch {Debug.Log("Esta vacio");}
         CloseShop();
+
+        //SFX
+        SFX.clip = buy;
+        SFX.Play();
     }
     
 }

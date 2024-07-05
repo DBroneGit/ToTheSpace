@@ -1,5 +1,4 @@
     using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ship : MonoBehaviour
@@ -11,9 +10,7 @@ public class Ship : MonoBehaviour
     private static int altitude = 0; public static int Altitude { get => Altitude = altitude; set => altitude = value; }
     private int cantityOfFlyingObjects = 0; public int CantityOfFlyingObject { get => cantityOfFlyingObjects; set => cantityOfFlyingObjects = value; }
     
-    private Vector2 startPosition;
-    private Vector2 objetivePosition;
-    private float flyingSpeed = 5;
+    [SerializeField] private float flyingSpeed = 4;
     private float time;
     void Awake()
     {
@@ -28,16 +25,21 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
+        UpdatePosition();
+
         time += Time.deltaTime;
 
-        rgbody.MovePosition(Vector2.Lerp(startPosition, objetivePosition,
-                            time/(Math.Abs(objetivePosition.y - startPosition.y) / flyingSpeed)));
+       
+        if(altitude > (int) transform.position.y) rgbody.velocity = new Vector2(0, flyingSpeed);
+        else if(altitude < (int) transform.position.y) rgbody.velocity = new Vector2(0, -flyingSpeed);
+        else rgbody.velocity = Vector2.zero;
     }
+
 
     private void UpdatePosition()
     {
-        startPosition = transform.position;
-        objetivePosition = new Vector2(0, altitude);
+        if(cantityOfFlyingObjects >= 2) altitude = (cantityOfFlyingObjects * 10) - 20 + Money.Cantity;
+        if(altitude > 100) altitude = 100;  
         time = 0;
 
         generatorManager.UpdateActivatedsGenerators();
@@ -46,7 +48,5 @@ public class Ship : MonoBehaviour
     public void AddRemoveFlyingObject(int cantity)
     {
         cantityOfFlyingObjects += cantity;
-        Altitude = cantityOfFlyingObjects * 5;
-        UpdatePosition();
     }
 }

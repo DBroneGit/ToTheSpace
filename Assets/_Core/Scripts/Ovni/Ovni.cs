@@ -25,8 +25,8 @@ public class Ovni : MonoBehaviour
         time = 0;
         comeOutTime = 20;
         finishAsk = false;
-        transform.position = collector.transform.position + (Vector3.up * 5) + (Vector3.left * 15);
-        SetPosition(collector.transform.position + (Vector3.up * 5));
+        transform.position = collector.transform.position + (Vector3.up * 8) + (Vector3.left * 15);
+        SetPosition(collector.transform.position + (Vector3.up * 8));
     }
 
     private void Update()
@@ -35,46 +35,47 @@ public class Ovni : MonoBehaviour
         time += Time.deltaTime;
 
         //Nos movemos a la posicion
-        if(time <= 3f)
+        if(time <= 1f)
         {
-            rgbody.MovePosition(Vector2.Lerp(startPosition, objetivePosition, time/3));
+            rgbody.MovePosition(Vector2.Lerp(startPosition, collector.transform.position + (Vector3.up * 8), time));
         }
 
         //Lanza el rayo si hay algo
-        if(time >= 3 && time <= 4)
+        if(time >= 1 && time <= 2)
         {
             ray.SetActive(true);
-            ray.transform.localScale = new Vector3(Mathf.Lerp(0, 1, time - 3),6 ,1 );
+            ray.transform.localScale = new Vector3(Mathf.Lerp(0, 1, time - 1),8.5f ,1 );
 
         }
         
         //Pregunta si hay algo
-        if(time >= 4 && time < comeOutTime && finishAsk == false )
+        if(time >= 2 && time < comeOutTime && finishAsk == false )
         {
             thereAreSomething = ray.GetComponent<Ray>().ThereAreSomething;
 
             if(thereAreSomething == false)
             {
                 comeOutTime = time + 1;
-                SetPosition(collector.transform.position + (Vector3.up * 6) + (Vector3.right * 15));
                 finishAsk = true;
             } 
         }
         //Cierra el laser
         if(time >= comeOutTime && time <= comeOutTime + 1)
         {
-            ray.transform.localScale = new Vector3(Mathf.Lerp(1, 0, time - comeOutTime),6 ,1 );
+            ray.transform.localScale = new Vector3(Mathf.Lerp(1, 0, time - comeOutTime),8.5f ,1 );
+
+            SetPosition(collector.transform.position + (Vector3.up * 8) + (Vector3.right * 15));
         }
 
         //Se va
-        if(time >= (comeOutTime + 1) && time <= (comeOutTime + 4))
+        if(time >= (comeOutTime + 1) && time <= (comeOutTime + 2))
         {
             ray.SetActive(false);
-            rgbody.MovePosition(Vector2.Lerp(startPosition, objetivePosition, (time - comeOutTime - 1)/3));
+            rgbody.MovePosition(Vector2.Lerp(startPosition, objetivePosition, time - comeOutTime - 1));
         }
 
         //Desaparece
-        if(time >= comeOutTime + 4)
+        if(time >= comeOutTime + 2)
         {
             gameObject.SetActive(false);
 

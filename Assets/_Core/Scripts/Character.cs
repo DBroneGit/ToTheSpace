@@ -16,13 +16,18 @@ public class Character : MonoBehaviour
     [SerializeField] private float throwForce = 10f; public float ThrowForce { get => throwForce; set => throwForce = value; }  
     [SerializeField] private float AttackColdown = 0.5f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource jumpSFX;
+    [SerializeField] private AudioSource punchSFX;
+    [SerializeField] private AudioSource throwSFX;
+
+
     private bool watchingShop;
 
     private float attackTime = 0;
 
     void Awake()
     {
-        
         rgbody = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         animator = GetComponentInChildren<Animator>();
@@ -44,6 +49,7 @@ public class Character : MonoBehaviour
     void LateUpdate()
     {
         animator.SetFloat("Velocity", Mathf.Abs(rgbody.velocity.x));
+        animator.SetBool("IsCarrying", pickedObject != null);
     }
 
     /// <summary>
@@ -54,6 +60,7 @@ public class Character : MonoBehaviour
     {
         rgbody.velocity = new Vector2(dir * velocity, rgbody.velocity.y);
         if(dir != 0) transform.localScale = new Vector3(dir ,1 ,1);
+
     }
 
     /// <summary>
@@ -63,8 +70,10 @@ public class Character : MonoBehaviour
     {
         if(IsGrounded())
         {
-            rgbody.velocity = Vector2.zero;
             rgbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
+            //SFX
+            jumpSFX.Play();
         }
     }
 
@@ -84,6 +93,8 @@ public class Character : MonoBehaviour
         hand.SetActive(true);
 
         attackTime = 0;
+
+        punchSFX.Play();
     }
     private void Interact()
     {
@@ -133,6 +144,8 @@ public class Character : MonoBehaviour
         pickedObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         pickedObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(posX * throwForce, posY * throwForce), ForceMode2D.Impulse);
         Drop();
+
+        throwSFX.Play();
     }
 
     public void Drop()

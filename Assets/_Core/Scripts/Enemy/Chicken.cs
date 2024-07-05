@@ -15,6 +15,7 @@ public class Chicken : EnemyIA
     protected override void OnEnable()
     {
         base.OnEnable();
+        animalSound.Play();
     }
 
     protected override void OnCollisionEnter2D(Collision2D other)

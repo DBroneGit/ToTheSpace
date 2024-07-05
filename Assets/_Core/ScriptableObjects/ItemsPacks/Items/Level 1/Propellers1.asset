@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Propeller L1
   itemIcon: {fileID: -614084842, guid: a71c82736fa6bb846869d7d83c32ee88, type: 3}
-  price: 5
+  price: 10
+  altitudeRequired: 0
   itemsRequired:
   - {fileID: 11400000, guid: 42d9860c55d42514580253e06d36cf1c, type: 2}
   - {fileID: 11400000, guid: bd080b74082944f4cb7f581bb838f6c4, type: 2}
-  sold: 0
+  sold: 1
   upgradeEvent: {fileID: 11400000, guid: 479ce95456f843c4ba22cd3b38475682, type: 2}

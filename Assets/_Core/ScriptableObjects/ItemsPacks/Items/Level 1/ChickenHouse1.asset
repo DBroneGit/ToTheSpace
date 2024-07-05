@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chicken House L1
   itemIcon: {fileID: -1081555511, guid: 4a7e3a75cb2267e42ad24698d039d518, type: 3}
-  price: 3
+  price: 5
   altitudeRequired: 0
   itemsRequired:
   - {fileID: 11400000, guid: 42d9860c55d42514580253e06d36cf1c, type: 2}
-  sold: 0
+  sold: 1
   upgradeEvent: {fileID: 11400000, guid: 19c18f082d0ecd74589e3f5f6e2ab7d8, type: 2}

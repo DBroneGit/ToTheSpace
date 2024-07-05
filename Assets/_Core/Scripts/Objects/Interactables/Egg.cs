@@ -17,12 +17,15 @@ public class Egg : InteractableObject
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.layer == 7)
+        if(gameObject.layer == 8)
         {
-            other.gameObject.GetComponent<Health>().ApplyDamage(damage);
-            other.gameObject.GetComponent<EnemyIA>().ShotDown = true;
-        }
+            if(other.gameObject.layer == 7)
+            {
+                other.gameObject.GetComponent<Health>().ApplyDamage(damage);
+                other.gameObject.GetComponent<EnemyIA>().ShotDown = true;
+            }
 
-        PoolsManager.Instance.SearchPool(gameObject).Return(gameObject);   
+            PoolsManager.Instance.SearchPool(gameObject).Return(gameObject);   
+        }
     }
 }

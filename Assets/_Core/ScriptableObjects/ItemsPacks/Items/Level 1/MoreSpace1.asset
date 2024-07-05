@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: More Space L1
   itemIcon: {fileID: -1064998203, guid: 6d2f4d8a360f22f4d80a5e9f5d625979, type: 3}
-  price: 3
+  price: 5
+  altitudeRequired: 0
   itemsRequired: []
   sold: 1
   upgradeEvent: {fileID: 11400000, guid: 7ec661b0f0d31004f966e2f5744ed39b, type: 2}

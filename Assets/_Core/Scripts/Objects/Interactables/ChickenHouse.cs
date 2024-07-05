@@ -14,6 +14,7 @@ public class ChickenHouse : InteractableObject
 
     private void Update()
     {
+        
         if(egg != null) //Si hay huevos para generar
         {
             time += Time.deltaTime;
@@ -24,16 +25,22 @@ public class ChickenHouse : InteractableObject
                 time = 0;
             }
         }
+        else
+        {
+            
+        }
     }
 
     private void GenerateEgg()
     {
-        GameObject eggGenerated = PoolsManager.Instance.SearchPool(egg).GetObject();
-        eggGenerated.transform.position = eggPosition.position;
-        eggGenerated.transform.parent = eggPosition;
-        eggGenerated.GetComponent<Rigidbody2D>().gravityScale = 0;
+        for(int i = 0; i < eggsPerCicle; i++)
+        {   
+            GameObject eggGenerated = PoolsManager.Instance.SearchPool(egg).GetObject();
+            eggGenerated.transform.position = eggPosition.position;
+            eggGenerated.transform.parent = eggPosition;
 
-        eggGenerated.SetActive(true);
+            eggGenerated.SetActive(true);
+        }
     }
 
     public override void Interact(Character character)
@@ -53,6 +60,9 @@ public class ChickenHouse : InteractableObject
             } 
             else //Si tiene enemigo en mano
             {
+                //Si no hay nada en la casa de pajaros
+                if(bird != null) return;
+                
                 Enemy enemy = character.PickedObject.GetComponent<Enemy>(); 
 
                 if(enemy.IsOviparous == false) return; //Requiere que sea oviparo
@@ -83,5 +93,6 @@ public class ChickenHouse : InteractableObject
         player.PickUp(bird);
         egg = null;
         time = 0;
+        bird = null;
     }
 }

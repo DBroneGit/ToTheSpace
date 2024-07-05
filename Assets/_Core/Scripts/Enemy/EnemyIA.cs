@@ -12,6 +12,8 @@ public abstract class EnemyIA : MonoBehaviour
 
     [SerializeField] protected PhysicsMaterial2D baseMaterial;
     [SerializeField] protected PhysicsMaterial2D pickableMaterial;
+
+    protected AudioSource animalSound;
     
     protected float moveTime = 0;
     protected float timeToChangeDirection = 0;
@@ -27,6 +29,7 @@ public abstract class EnemyIA : MonoBehaviour
         rgbody = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
+        animalSound = GetComponent<AudioSource>();
     }
 
     protected virtual void OnEnable()
@@ -99,6 +102,7 @@ public abstract class EnemyIA : MonoBehaviour
         animator.enabled = true;
         rgbody.simulated = true;
         shotDown = false;
+        shotDownTime = 0;
     }
     
     protected void CheckGround()

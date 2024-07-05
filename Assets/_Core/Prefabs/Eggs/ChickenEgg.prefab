@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7231604846609193533}
   - component: {fileID: 2264886667745805615}
   - component: {fileID: 2121919034567278655}
-  - component: {fileID: 8463478099088333633}
   - component: {fileID: 5711113965018937730}
+  - component: {fileID: 5278091295802702863}
   m_Layer: 9
   m_Name: ChickenEgg
   m_TagString: Object
@@ -108,22 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!58 &8463478099088333633
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6907066035655796545}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.2
 --- !u!114 &5711113965018937730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +122,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requireEnemy: 0
   damage: 1
+--- !u!60 &5278091295802702863
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907066035655796545}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.0625, y: -0.1875}
+      - {x: -0.0625, y: -0.1875}
+      - {x: -0.1875, y: -0.0625}
+      - {x: -0.1875, y: 0.125}
+      - {x: -0.0625, y: 0.25}
+      - {x: 0.0625, y: 0.25}
+      - {x: 0.1875, y: 0.125}
+      - {x: 0.1875, y: -0.0625}

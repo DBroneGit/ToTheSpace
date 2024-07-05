@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: More Force L1
   itemIcon: {fileID: 1396917700, guid: 90dbb1268855e014ca4b2fe869aadea1, type: 3}
-  price: 5
+  price: 15
   altitudeRequired: 10
   itemsRequired:
   - {fileID: 11400000, guid: fa934d7351ca2c146b3708d35f730e52, type: 2}

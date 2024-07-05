@@ -4,6 +4,7 @@ public class Pigeon : EnemyIA
 {
     [SerializeField] protected int flyDirection;
     [SerializeField] protected float flyVelocity = 4;
+
     protected bool canFly;
     
     protected override void Awake()
@@ -48,8 +49,9 @@ public class Pigeon : EnemyIA
         {
             shotDownTime += Time.deltaTime;
             rgbody.gravityScale = 1;
+            animalSound.Stop();
 
-            if(shotDownTime >= 5){
+            if(shotDownTime >= 3){
                 shotDownTime = 0;
                 shotDown = false;
 
@@ -69,12 +71,13 @@ public class Pigeon : EnemyIA
         {
             if(IsGrounded)
             {
-               
+                animalSound.Stop();
             }
             else
             {
                 rgbody.gravityScale = 0;
                 Fly(flyDirection);
+                if(animalSound.isPlaying == false) animalSound.Play();
             }
         }
        

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Canons L1
   itemIcon: {fileID: 1078345138, guid: 34a42752d0e4acb478cc3f7fdb685b99, type: 3}
-  price: 5
-  altitudeRequired: 10
+  price: 15
+  altitudeRequired: 15
   itemsRequired:
   - {fileID: 11400000, guid: 3d810c485977e96409d6674d8e9d2b0a, type: 2}
   - {fileID: 11400000, guid: bd080b74082944f4cb7f581bb838f6c4, type: 2}

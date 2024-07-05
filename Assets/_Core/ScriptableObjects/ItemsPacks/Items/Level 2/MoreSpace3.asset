@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: More Space L3
   itemIcon: {fileID: 695312697, guid: 6d2f4d8a360f22f4d80a5e9f5d625979, type: 3}
-  price: 3
-  altitudeRequired: 10
+  price: 10
+  altitudeRequired: 5
   itemsRequired:
   - {fileID: 11400000, guid: fa934d7351ca2c146b3708d35f730e52, type: 2}
   sold: 0
